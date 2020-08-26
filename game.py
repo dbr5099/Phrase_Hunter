@@ -36,7 +36,7 @@ class Game:
 			  "\n===================================")
 		
 	def get_guess(self):
-		self.guess = input("Choose a letter: ")
+		self.guess = input("Choose a letter: ").lower()
 		if not self.guess.isalpha() or len(self.guess) > 1:
 			print("\nPlease enter only one letter A-Z")
 		return self.guess
