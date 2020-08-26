@@ -3,11 +3,13 @@ import random
 
 class Game:
 	def __init__(self):
+		"""Initializes the values for the game"""
 		self.missed = 0
 		self.active_phrase = self.get_random_phrase()
 		self.guesses = [" "]
 	
 	def get_random_phrase(self):
+		"""Chooses a random phrase from the list"""
 		phrases = [
 		Phrase('The best of both worlds'),
 		Phrase('Speak of the devil'),
@@ -19,6 +21,7 @@ class Game:
 		return phrase_object
 	
 	def start(self):
+		"""Runs the game loop until the game ends, then calls game over"""
 		self.welcome()
 		while self.missed < 5 and self.active_phrase.check_complete(self.guesses) == False:
 			print("\nNumber missed: ", self.missed)
@@ -36,12 +39,14 @@ class Game:
 			  "\n===================================")
 		
 	def get_guess(self):
+		"""Allows the user to input a guess"""
 		self.guess = input("Choose a letter: ").lower()
 		if not self.guess.isalpha() or len(self.guess) > 1:
 			print("\nPlease enter only one letter A-Z")
 		return self.guess
 	
 	def game_over(self):
+		"""Checks whether the user guessed the phrase correctly or ran out of tries"""
 		if self.active_phrase.check_complete(self.guesses) == True:
 			print("\nCongratulations, You Won The Game!!\n")
 		if self.missed == 5:
